@@ -1,12 +1,14 @@
-// Heritage sites data
+// ===============================
+// Telangana Heritage Sites Data
+// ===============================
 const heritageSites = [
     {
         id: 1,
         name: "Ancient Grand Temple",
         district: "central",
         religion: "buddhist",
-        map: "https://www.google.com/maps?q=1000+Pillar+Temple+Warangal",
-        image: "https://plus.unsplash.com/premium_photo-1678294323723-bfc7d93586dc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
+        map: "https://www.google.com/maps?q=1000+Pillar+Temple+Waranga",
+        image: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
         description: {
             en: "A magnificent temple complex dating back to the 8th century, known for its intricate carvings and spiritual significance.",
             hi: "8वीं शताब्दी का एक भव्य मंदिर परिसर, जो अपनी जटिल नक्काशियों और आध्यात्मिक महत्व के लिए प्रसिद्ध है।",
@@ -16,7 +18,7 @@ const heritageSites = [
     },
     {
         id: 2,
-        name: "Taj Mahal",
+        name: "Taj mahal",
         district: "northern",
         religion: "all",
         map: "https://www.google.com/maps?q=Golconda+Fort+Hyderabad",
@@ -48,7 +50,7 @@ const heritageSites = [
         district: "southern",
         religion: "jain",
         map: "https://www.google.com/maps?q=Kolanupaka+Jain+Temple+Telangana",
-        image: "https://images.unsplash.com/photo-1650105518992-e75632583519?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
+        image: "https://images.unsplash.com/photo-1604594849809-dfedbc827105?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
         description: {
             en: "An exquisite temple complex renowned for its marble craftsmanship and intricate detailing, dedicated to Jain Tirthankaras.",
             hi: "जैन तीर्थंकरों को समर्पित संगमरमर की उत्कृष्ट कारीगरी वाला भव्य मंदिर परिसर।",
@@ -58,7 +60,7 @@ const heritageSites = [
     },
     {
         id: 5,
-        name: "Colosseum",
+        name: "Colonial Cathedral",
         district: "central",
         religion: "christian",
         map: "https://www.google.com/maps?q=St.+Mary's+Cathedral+Hyderabad",
@@ -86,21 +88,27 @@ const heritageSites = [
     }
 ];
 
-// DOM elements
+// ===============================
+// DOM Elements
+// ===============================
 const sitesContainer = document.getElementById('sites-container');
 const districtFilters = document.querySelectorAll('#district-filters .filter-btn');
 const religionFilters = document.querySelectorAll('#religion-filters .filter-btn');
 
-// Initialize site cards
+let currentAudio = null;
+
+// ===============================
+// Render Heritage Site Cards
+// ===============================
 function renderSites(sites) {
     sitesContainer.innerHTML = '';
-    
+
     sites.forEach(site => {
         const siteCard = document.createElement('div');
         siteCard.className = 'site-card';
         siteCard.setAttribute('data-district', site.district);
         siteCard.setAttribute('data-religion', site.religion);
-        
+
         siteCard.innerHTML = `
             <div class="card-img">
                 <img src="${site.image}" alt="${site.name}">
@@ -125,18 +133,11 @@ function renderSites(sites) {
                 </div>
             </div>
         `;
-        
+
         sitesContainer.appendChild(siteCard);
     });
 
-    // Add event listeners
-    document.querySelectorAll('.audio-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const siteId = btn.getAttribute('data-site');
-            playAudioDescription(siteId);
-        });
-    });
-
+    // Map button
     document.querySelectorAll('.map-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const mapUrl = btn.getAttribute('data-map');
@@ -144,14 +145,23 @@ function renderSites(sites) {
         });
     });
 
+    // Audio button
+    document.querySelectorAll('.audio-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const siteId = btn.getAttribute('data-site');
+            playAudioDescription(siteId);
+        });
+    });
+
+    // Stop button
     document.querySelectorAll('.stop-btn').forEach(btn => {
         btn.addEventListener('click', stopAudio);
     });
 }
 
-// Audio & language
-let currentAudio = null;
-
+// ===============================
+// Audio Control
+// ===============================
 function playAudioDescription(siteId) {
     stopAudio();
     const site = heritageSites.find(s => s.id == siteId);
@@ -159,8 +169,8 @@ function playAudioDescription(siteId) {
 
     const lang = document.getElementById("language")?.value || "en";
     const text = site.description[lang] || site.description.en;
-    
-    const msg = new SpeechSynthesisUtterance(`This is ${site.name}. ${text} ${site.importance}`);
+
+    const msg = new SpeechSynthesisUtterance(`This is ${site.name}. ${text}. ${site.importance}`);
     msg.lang = lang === "hi" ? "hi-IN" : lang === "te" ? "te-IN" : "en-US";
     msg.rate = 0.9;
     msg.pitch = 1;
@@ -172,19 +182,23 @@ function stopAudio() {
     if (currentAudio) currentAudio.cancel();
 }
 
-// Filtering
+// ===============================
+// Filters
+// ===============================
 function filterSites() {
     const activeDistrict = document.querySelector('#district-filters .filter-btn.active').getAttribute('data-filter');
     const activeReligion = document.querySelector('#religion-filters .filter-btn.active').getAttribute('data-filter');
-    
+
     let filteredSites = heritageSites;
     if (activeDistrict !== 'all') filteredSites = filteredSites.filter(site => site.district === activeDistrict);
     if (activeReligion !== 'all') filteredSites = filteredSites.filter(site => site.religion === activeReligion);
-    
+
     renderSites(filteredSites);
 }
 
-// Language dropdown change
+// ===============================
+// Language Change
+// ===============================
 document.getElementById("language")?.addEventListener("change", () => {
     const lang = document.getElementById("language").value;
     document.querySelectorAll(".site-card").forEach((card, i) => {
@@ -195,7 +209,9 @@ document.getElementById("language")?.addEventListener("change", () => {
     stopAudio();
 });
 
-// Filter buttons
+// ===============================
+// Filter Button Actions
+// ===============================
 districtFilters.forEach(btn => {
     btn.addEventListener('click', function() {
         districtFilters.forEach(b => b.classList.remove('active'));
@@ -212,7 +228,10 @@ religionFilters.forEach(btn => {
     });
 });
 
+// ===============================
 // Initialize
+// ===============================
 document.addEventListener('DOMContentLoaded', function() {
     renderSites(heritageSites);
 });
+

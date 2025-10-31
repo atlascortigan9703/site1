@@ -6,7 +6,7 @@ const heritageSites = [
         district: "central",
         religion: "buddhist",
         map: "https://www.google.com/maps?q=1000+Pillar+Temple+Warangal",
-        image: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+        image: "https://plus.unsplash.com/premium_photo-1678294323723-bfc7d93586dc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
         description: {
             en: "A magnificent temple complex dating back to the 8th century, known for its intricate carvings and spiritual significance.",
             hi: "8वीं शताब्दी का एक भव्य मंदिर परिसर, जो अपनी जटिल नक्काशियों और आध्यात्मिक महत्व के लिए प्रसिद्ध है।",
@@ -16,7 +16,7 @@ const heritageSites = [
     },
     {
         id: 2,
-        name: "Royal Fortress Palace",
+        name: "Taj Mahal",
         district: "northern",
         religion: "all",
         map: "https://www.google.com/maps?q=Golconda+Fort+Hyderabad",
@@ -48,7 +48,7 @@ const heritageSites = [
         district: "southern",
         religion: "jain",
         map: "https://www.google.com/maps?q=Kolanupaka+Jain+Temple+Telangana",
-        image: "https://images.unsplash.com/photo-1604594849809-dfedbc827105?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1650105518992-e75632583519?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
         description: {
             en: "An exquisite temple complex renowned for its marble craftsmanship and intricate detailing, dedicated to Jain Tirthankaras.",
             hi: "जैन तीर्थंकरों को समर्पित संगमरमर की उत्कृष्ट कारीगरी वाला भव्य मंदिर परिसर।",
@@ -58,7 +58,7 @@ const heritageSites = [
     },
     {
         id: 5,
-        name: "Colonial Cathedral",
+        name: "Colosseum",
         district: "central",
         religion: "christian",
         map: "https://www.google.com/maps?q=St.+Mary's+Cathedral+Hyderabad",

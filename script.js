@@ -234,3 +234,4 @@ religionFilters.forEach(btn => {
 document.addEventListener('DOMContentLoaded', function() {
     renderSites(heritageSites);
 });
+

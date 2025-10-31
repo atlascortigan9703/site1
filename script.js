@@ -7,7 +7,7 @@ const heritageSites = [
         name: "Ancient Grand Temple",
         district: "central",
         religion: "buddhist",
-        map: "https://www.google.com/maps?q=1000+Pillar+Temple+Waranga",
+        map: "https://www.google.com/maps?q=1000+Pillar+Temple+Warangal",
         image: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
         description: {
             en: "A magnificent temple complex dating back to the 8th century, known for its intricate carvings and spiritual significance.",
@@ -18,10 +18,10 @@ const heritageSites = [
     },
     {
         id: 2,
-        name: "Taj mahal",
+        name: "Royal Fortress Palace",
         district: "northern",
         religion: "all",
-        map: "https://www.google.com/maps/dir//Taj+Mahal,+New+Delhi,+Taj+Mahal,+New+Delhi+Number+1,+Man+Singh+Road+Area,+New+Delhi,+Delhi+110011/@17.3881678,78.4400384,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x390ce2c3d83ea011:0x719a5e5196b12ee8!2m2!1d77.2234582!2d28.6048011!3e0?hl=en-US&entry=ttu&g_ep=EgoyMDI1MTAyOC4wIKXMDSoASAFQAw%3D%3D",
+        map: "https://www.google.com/maps?q=Golconda+Fort+Hyderabad",
         image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
         description: {
             en: "A majestic fortress that once served as the seat of power for regional rulers, featuring impressive defensive structures.",
@@ -234,4 +234,3 @@ religionFilters.forEach(btn => {
 document.addEventListener('DOMContentLoaded', function() {
     renderSites(heritageSites);
 });
-
